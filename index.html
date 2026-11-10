@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慢慢 ManMan Cafe | 台中一中街草莓與抹茶甜點專賣</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Professional Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Zen Kurenaido (手寫感日系字體) & Noto Serif TC (質感襯線體) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Noto+Serif+TC:wght@400;600;700;900&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'strawberry-dark': '#C94A61',
+                        'strawberry-soft': '#F7EBEF',
+                        'matcha-dark': '#3B5E2B',
+                        'matcha-soft': '#EFF3EC',
+                        'matcha-accent': '#608644',
+                        'cream-bg': '#FAF8F5',
+                        'charcoal': '#2C2A29',
+                        'taupe': '#7A736E'
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif TC', 'serif'],
+                        handwriting: ['Zen Kurenaido', 'Caveat', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .font-handwriting {
+            font-family: 'Zen Kurenaido', 'Caveat', cursive, serif;
+        }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-cream-bg text-charcoal font-serif antialiased selection:bg-strawberry-dark selection:text-white">
+
+    <!-- 導覽列 Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-cream-bg/90 backdrop-blur-md border-b border-stone-200/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-baseline gap-3">
+                <span class="text-3xl font-handwriting font-bold text-strawberry-dark tracking-wider">慢慢</span>
+                <span class="text-xs font-semibold text-taupe tracking-[0.25em] uppercase border-l border-stone-300 pl-3">ManMan Cafe</span>
+            </a>
+
+            <!-- 桌機選單 Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm tracking-widest text-charcoal/80">
+                <a href="#about" class="hover:text-strawberry-dark transition-colors">關於品牌</a>
+                <a href="#special" class="hover:text-matcha-dark transition-colors">旬味草莓與抹茶</a>
+                <a href="#menu" class="hover:text-strawberry-dark transition-colors">甜點菜單</a>
+                <a href="#student-discount" class="hover:text-matcha-dark transition-colors">學生禮遇</a>
+                <a href="#location" class="hover:text-strawberry-dark transition-colors">門市資訊</a>
+            </nav>
+
+            <!-- 訂位按鈕 Reservation Button -->
+            <div class="hidden md:block">
+                <button onclick="openModal()" class="bg-strawberry-dark hover:bg-strawberry-dark/90 text-white font-medium text-xs tracking-widest px-6 py-3 rounded-sm transition-all shadow-sm flex items-center gap-2">
+                    <i class="fa-regular fa-calendar text-sm"></i>
+                    <span>線上席位預約</span>
+                </button>
+            </div>
+
+            <!-- 行動裝置選單按鈕 Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-xl text-charcoal focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- 行動裝置下拉選單 Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-bg border-b border-stone-200 px-6 py-6 flex flex-col gap-5 text-sm tracking-widest">
+            <a href="#about" class="py-2 border-b border-stone-100 hover:text-strawberry-dark" onclick="toggleMobileMenu()">關於品牌</a>
+            <a href="#special" class="py-2 border-b border-stone-100 hover:text-matcha-dark" onclick="toggleMobileMenu()">旬味草莓與抹茶</a>
+            <a href="#menu" class="py-2 border-b border-stone-100 hover:text-strawberry-dark" onclick="toggleMobileMenu()">甜點菜單</a>
+            <a href="#student-discount" class="py-2 border-b border-stone-100 hover:text-matcha-dark" onclick="toggleMobileMenu()">學生禮遇</a>
+            <a href="#location" class="py-2 border-b border-stone-100 hover:text-strawberry-dark" onclick="toggleMobileMenu()">門市資訊</a>
+            <button onclick="openModal(); toggleMobileMenu();" class="w-full bg-strawberry-dark text-white font-medium py-3 rounded-sm text-xs tracking-widest mt-2">
+                線上席位預約
+            </button>
+        </div>
+    </header>
+
+    <!-- 主頁 Hero Section -->
+    <section class="pt-36 pb-24 md:pt-44 md:pb-32 px-6 border-b border-stone-200/60">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center">
+            <!-- Hero Text -->
+            <div class="md:col-span-7 z-10">
+                <div class="inline-flex items-center gap-2 text-matcha-dark text-xs tracking-[0.2em] font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-matcha-accent"></span>
+                    <span>TAICHUNG YIZHONG STREET</span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-charcoal tracking-tight">
+                    在一中街的微風裡，<br>
+                    與<span class="font-handwriting text-strawberry-dark text-4xl sm:text-6xl lg:text-7xl font-normal px-1">慢慢</span>共度甜美時光。
+                </h1>
+                
+                <p class="text-stone-600 text-base sm:text-lg leading-relaxed mb-10 max-w-xl font-normal">
+                    專注呈獻靜岡產地直送濃郁抹茶與大湖產地新鮮草莓。在優雅溫潤的質感空間內，引領您放慢步調，細品甜點與咖啡交織的細緻層次。
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a href="#special" class="bg-strawberry-dark hover:bg-strawberry-dark/90 text-white font-medium text-xs tracking-[0.2em] px-8 py-4 rounded-sm text-center transition-all">
+                        探索草莓抹茶限定
+                    </a>
+                    <button onclick="openModal()" class="border border-charcoal/30 hover:border-charcoal text-charcoal font-medium text-xs tracking-[0.2em] px-8 py-4 rounded-sm text-center transition-all">
+                        預約席位
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero Image Showcase -->
+            <div class="md:col-span-5 relative">
+                <div class="relative z-10 shadow-xl overflow-hidden rounded-sm border border-stone-200 bg-white p-3">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80" alt="慢慢 草莓塔" class="w-full h-[420px] object-cover">
+                    <div class="p-5 flex justify-between items-end">
+                        <div>
+                            <span class="text-[10px] tracking-widest text-strawberry-dark uppercase font-bold block mb-1">RECOMMENDED SIGNATURE</span>
+                            <h3 class="font-bold text-lg text-charcoal tracking-wide">特濃靜岡草莓抹茶塔</h3>
+                        </div>
+                        <span class="font-handwriting text-2xl text-matcha-dark font-bold">NT$ 160</span>
+                    </div>
+                </div>
+                <!-- 質感後方框架底襯 -->
+                <div class="absolute -inset-3 border border-stone-300 rounded-sm z-0 transform translate-x-3 translate-y-3 pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色主題區域 Special Feature -->
+    <section id="special" class="py-24 px-6 bg-white border-b border-stone-200/60">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-xl mb-16">
+                <span class="text-xs font-semibold tracking-[0.3em] text-strawberry-dark uppercase block mb-3">SEASONAL SELECTION</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-charcoal tracking-wide mb-4">草莓與抹茶的頂級對話</h2>
+                <div class="w-12 h-0.5 bg-matcha-accent mb-6"></div>
+                <p class="text-stone-600 text-sm leading-relaxed">嚴選產地契作新鮮食材，秉持職人精神手工揉捏製作，呈現酸香鮮甜與甘醇微苦的完美平衡。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- 草莓主軸 -->
+                <div class="bg-strawberry-soft/50 p-10 border border-strawberry-dark/10 rounded-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-leaf text-strawberry-dark text-xs"></i>
+                            <span class="text-xs font-bold tracking-widest text-strawberry-dark uppercase">STRAWBERRY SERIES</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-charcoal mb-3">大湖產地鮮採草莓系列</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-8">
+                            每日清晨直送台灣大湖頂級草莓，搭配清爽低糖生乳餡，保留果實天然飽滿多汁口感與優雅酸甜。
+                        </p>
+                    </div>
+                    <ul class="space-y-4 border-t border-strawberry-dark/10 pt-6">
+                        <li class="flex items-center justify-between text-xs tracking-wider text-charcoal">
+                            <span class="font-semibold">草莓朵朵舒芙蕾鬆餅</span>
+                            <span class="text-strawberry-dark font-bold">NT$ 180</span>
+                        </li>
+                        <li class="flex items-center justify-between text-xs tracking-wider text-charcoal">
+                            <span class="font-semibold">職人特選草莓生乳卷</span>
+                            <span class="text-strawberry-dark font-bold">NT$ 150</span>
+                        </li>
+                        <li class="flex items-center justify-between text-xs tracking-wider text-charcoal">
+                            <span class="font-semibold">法式鮮草莓微氣泡飲</span>
+                            <span class="text-strawberry-dark font-bold">NT$ 140</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 抹茶主軸 -->
+                <div class="bg-matcha-soft/50 p-10 border border-matcha-dark/10 rounded-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-leaf text-matcha-dark text-xs"></i>
+                            <span class="text-xs font-bold tracking-widest text-matcha-dark uppercase">MATCHA SERIES</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-charcoal mb-3">日本靜岡御用抹茶系列</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed mb-8">
+                            採用日本靜岡初採番茶，現刷磨研以保留濃厚抹香與細緻微苦風味，為沉穩優雅的大人感風味選。
+                        </p>
+                    </div>
+                    <ul class="space-y-4 border-t border-matcha-dark/10 pt-6">
+                        <li class="flex items-center justify-between text-xs tracking-wider text-charcoal">
+                            <span class="font-semibold">70% 極濃靜岡抹茶巴斯克</span>
+                            <span class="text-matcha-dark font-bold">NT$ 140</span>
+                        </li>
+                        <li class="flex items-center justify-between text-xs tracking-wider text-charcoal">
+                            <span class="font-semibold">手做京都抹茶千層蛋糕</span>
+                            <span class="text-matcha-dark font-bold">NT$ 160</span>
+                        </li>
+                        <li class="flex items-center justify-between text-xs tracking-wider text-charcoal">
+                            <span class="font-semibold">現刷濃靜岡抹茶歐蕾</span>
+                            <span class="text-matcha-dark font-bold">NT$ 130</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精選菜單 Menu Section -->
+    <section id="menu" class="py-24 px-6 bg-cream-bg border-b border-stone-200/60">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <span class="text-xs font-semibold tracking-[0.3em] text-taupe uppercase block mb-3">PATISSERIE & COFFEE</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-charcoal tracking-wide mb-4">慢慢精選菜單</h2>
+                <div class="w-12 h-0.5 bg-stone-300 mx-auto"></div>
+            </div>
+
+            <!-- 分類標籤 Filter Tabs -->
+            <div class="flex justify-center gap-6 mb-14 text-xs tracking-[0.2em]">
+                <button onclick="filterMenu('all')" class="menu-tab active border-b-2 border-strawberry-dark text-strawberry-dark font-bold pb-2 transition-all" data-category="all">全部品項</button>
+                <button onclick="filterMenu('strawberry')" class="menu-tab text-taupe hover:text-strawberry-dark border-b-2 border-transparent pb-2 transition-all" data-category="strawberry">草莓專區</button>
+                <button onclick="filterMenu('matcha')" class="menu-tab text-taupe hover:text-matcha-dark border-b-2 border-transparent pb-2 transition-all" data-category="matcha">抹茶專區</button>
+                <button onclick="filterMenu('coffee')" class="menu-tab text-taupe hover:text-charcoal border-b-2 border-transparent pb-2 transition-all" data-category="coffee">精選咖啡</button>
+            </div>
+
+            <!-- 菜單列表 Menu Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 品項 1 -->
+                <div class="menu-item category-strawberry bg-white border border-stone-200/80 rounded-sm overflow-hidden group hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" alt="草莓抹茶塔" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <span class="absolute top-4 left-4 bg-charcoal text-white text-[10px] tracking-widest font-semibold px-3 py-1 uppercase">SIGNATURE</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h3 class="font-bold text-base text-charcoal tracking-wide">特濃草莓抹茶塔</h3>
+                            <span class="font-handwriting text-xl text-strawberry-dark font-bold">NT$ 160</span>
+                        </div>
+                        <p class="text-stone-500 text-xs leading-relaxed mb-6">酥脆法式塔皮搭配濃郁靜岡抹茶餡，鋪滿新鮮大湖草莓。</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100 text-xs">
+                            <span class="text-stone-400 font-medium">特選人氣甜點</span>
+                            <button onclick="addToOrder('特濃草莓抹茶塔')" class="text-strawberry-dark hover:text-charcoal font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> 加入預留
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 2 -->
+                <div class="menu-item category-strawberry bg-white border border-stone-200/80 rounded-sm overflow-hidden group hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80" alt="草莓朵朵舒芙蕾" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h3 class="font-bold text-base text-charcoal tracking-wide">草莓朵朵舒芙蕾</h3>
+                            <span class="font-handwriting text-xl text-strawberry-dark font-bold">NT$ 180</span>
+                        </div>
+                        <p class="text-stone-500 text-xs leading-relaxed mb-6">現點現做蓬鬆質地，佐以手工草莓醬與輕盈手工生乳。</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100 text-xs">
+                            <span class="text-stone-400 font-medium">現點現做 需候15分</span>
+                            <button onclick="addToOrder('草莓朵朵舒芙蕾')" class="text-strawberry-dark hover:text-charcoal font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> 加入預留
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 3 -->
+                <div class="menu-item category-matcha bg-white border border-stone-200/80 rounded-sm overflow-hidden group hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80" alt="抹茶巴斯克" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h3 class="font-bold text-base text-charcoal tracking-wide">70% 極濃抹茶巴斯克</h3>
+                            <span class="font-handwriting text-xl text-matcha-dark font-bold">NT$ 140</span>
+                        </div>
+                        <p class="text-stone-500 text-xs leading-relaxed mb-6">高抹度微苦回甘，搭配半熟濃郁乳酪口感。</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100 text-xs">
+                            <span class="text-stone-400 font-medium">抹茶控首選</span>
+                            <button onclick="addToOrder('70% 極濃抹茶巴斯克')" class="text-matcha-dark hover:text-charcoal font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> 加入預留
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 4 -->
+                <div class="menu-item category-matcha bg-white border border-stone-200/80 rounded-sm overflow-hidden group hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="抹茶拿鐵" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h3 class="font-bold text-base text-charcoal tracking-wide">靜岡現刷抹茶歐蕾</h3>
+                            <span class="font-handwriting text-xl text-matcha-dark font-bold">NT$ 130</span>
+                        </div>
+                        <p class="text-stone-500 text-xs leading-relaxed mb-6">茶道等級手刷抹茶，融合香醇鮮乳，呈現溫潤風味。</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100 text-xs">
+                            <span class="text-stone-400 font-medium">可調整甜度</span>
+                            <button onclick="addToOrder('靜岡現刷抹茶歐蕾')" class="text-matcha-dark hover:text-charcoal font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> 加入預留
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 5 -->
+                <div class="menu-item category-coffee bg-white border border-stone-200/80 rounded-sm overflow-hidden group hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="小白咖啡" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h3 class="font-bold text-base text-charcoal tracking-wide">慢慢招牌小白咖啡</h3>
+                            <span class="font-handwriting text-xl text-charcoal font-bold">NT$ 120</span>
+                        </div>
+                        <p class="text-stone-500 text-xs leading-relaxed mb-6">中烘焙特調豆配方，帶有焦糖堅果甜感與絲滑奶泡。</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100 text-xs">
+                            <span class="text-stone-400 font-medium">特調中烘焙</span>
+                            <button onclick="addToOrder('慢慢招牌小白咖啡')" class="text-charcoal hover:text-strawberry-dark font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> 加入預留
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 品項 6 -->
+                <div class="menu-item category-strawberry category-coffee bg-white border border-stone-200/80 rounded-sm overflow-hidden group hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80" alt="草莓拿鐵" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-baseline mb-3">
+                            <h3 class="font-bold text-base text-charcoal tracking-wide">草莓濃縮濃情拿鐵</h3>
+                            <span class="font-handwriting text-xl text-strawberry-dark font-bold">NT$ 150</span>
+                        </div>
+                        <p class="text-stone-500 text-xs leading-relaxed mb-6">自製草莓果醬搭配濃縮咖啡與綿密鮮奶。</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-stone-100 text-xs">
+                            <span class="text-stone-400 font-medium">特調季節特飲</span>
+                            <button onclick="addToOrder('草莓濃縮濃情拿鐵')" class="text-strawberry-dark hover:text-charcoal font-semibold transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus text-[10px]"></i> 加入預留
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 學生專屬優惠 Student Discount Banner -->
+    <section id="student-discount" class="py-20 px-6 bg-charcoal text-white">
+        <div class="max-w-5xl mx-auto border border-stone-700 p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div class="space-y-4 text-center md:text-left">
+                <span class="text-[10px] tracking-[0.3em] font-semibold text-strawberry-dark uppercase block">ACADEMIC PRIVILEGE</span>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-wide">一中學區 學生獨享專屬禮遇</h2>
+                <p class="text-stone-400 text-sm leading-relaxed max-w-xl">
+                    凡出示台中一中、台中女中、新民高中、臺中科技大學等有效學生證件，即享全品項甜點飲料組合折抵 NT$ 20 優惠。
+                </p>
+            </div>
+            <button onclick="openModal()" class="flex-shrink-0 bg-white hover:bg-stone-100 text-charcoal font-semibold text-xs tracking-[0.2em] px-8 py-4 rounded-sm transition-all">
+                預約學生專屬席位
+            </button>
+        </div>
+    </section>
+
+    <!-- 店家環境與理念 About Section -->
+    <section id="about" class="py-24 px-6 bg-white border-b border-stone-200/60">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-2 gap-4">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=500&q=80" alt="門市環境" class="rounded-sm border border-stone-200 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=500&q=80" alt="甜點製作" class="rounded-sm border border-stone-200 shadow-sm mt-8">
+            </div>
+
+            <div class="space-y-6">
+                <span class="text-xs font-semibold tracking-[0.3em] text-matcha-dark uppercase block">OUR PHILOSOPHY</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-charcoal tracking-wide leading-snug">
+                    繁華一中商圈的寧靜角落，<br>感受慢步調的極緻甜美。
+                </h2>
+                <p class="text-stone-600 text-sm leading-relaxed">
+                    「慢慢 ManMan Cafe」隱身在一中商圈靜謐巷弄內。我們致力打造充滿質感與溫度的空間，讓課業繁忙的學子與微醺午後的過客，都能在這裡覓得專屬的自在靜謐。
+                </p>
+                <p class="text-stone-600 text-sm leading-relaxed">
+                    全店提供免費高頻 Wi-Fi 與座席電源插座，無負擔的溫馨環境，伴您度過優雅閱讀或閱讀甜點的微光時光。
+                </p>
+
+                <div class="grid grid-cols-3 gap-6 pt-6 border-t border-stone-100 text-center">
+                    <div>
+                        <span class="text-xs text-taupe block mb-1">食材源頭</span>
+                        <span class="text-sm font-bold text-charcoal">100% 直送產地草莓</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-taupe block mb-1">特選抹茶</span>
+                        <span class="text-sm font-bold text-matcha-dark">日本靜岡契作茶粉</span>
+                    </div>
+                    <div>
+                        <span class="text-xs text-taupe block mb-1">座位設施</span>
+                        <span class="text-sm font-bold text-charcoal">免費 Wi-Fi & 插座</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 交通指引與營業資訊 Location Section -->
+    <section id="location" class="py-24 px-6 bg-cream-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-xl mb-16">
+                <span class="text-xs font-semibold tracking-[0.3em] text-strawberry-dark uppercase block mb-3">LOCATION & HOURS</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-charcoal tracking-wide mb-4">門市資訊與地圖</h2>
+                <div class="w-12 h-0.5 bg-strawberry-dark mb-4"></div>
+                <p class="text-stone-600 text-sm">距台中一中步行約 3 分鐘，歡迎前來佇足。</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-10 items-stretch">
+                <!-- 店家詳細資訊 Card -->
+                <div class="md:col-span-5 bg-white border border-stone-200 p-8 sm:p-10 rounded-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-charcoal mb-8 border-b border-stone-100 pb-4">慢慢 ManMan Cafe</h3>
+
+                        <div class="space-y-6 text-sm">
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-location-dot text-strawberry-dark text-base mt-1"></i>
+                                <div>
+                                    <span class="block text-[10px] font-bold tracking-widest text-taupe uppercase mb-1">ADDRESS</span>
+                                    <span class="font-semibold text-charcoal">台中市北區一中街 99 巷 15 號</span>
+                                    <p class="text-xs text-stone-500 mt-1">（水利大樓對向巷內步行約 50 公尺）</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <i class="fa-regular fa-clock text-matcha-dark text-base mt-1"></i>
+                                <div>
+                                    <span class="block text-[10px] font-bold tracking-widest text-taupe uppercase mb-1">BUSINESS HOURS</span>
+                                    <span class="font-semibold text-charcoal">週一至週日 12:00 - 21:00</span>
+                                    <p class="text-xs text-strawberry-dark font-medium mt-1">最後點餐時間 20:20</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-phone text-taupe text-base mt-1"></i>
+                                <div>
+                                    <span class="block text-[10px] font-bold tracking-widest text-taupe uppercase mb-1">TEL</span>
+                                    <span class="font-semibold text-charcoal">04-2225-8888</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-stone-100 mt-8">
+                        <button onclick="openModal()" class="w-full bg-strawberry-dark hover:bg-strawberry-dark/90 text-white font-medium text-xs tracking-widest py-4 rounded-sm transition-all text-center">
+                            預約席位
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 質感靜態地圖框 Map Container -->
+                <div class="md:col-span-7 bg-white border border-stone-200 p-3 rounded-sm flex flex-col min-h-[350px]">
+                    <div class="relative w-full h-full min-h-[320px] bg-stone-100 rounded-sm overflow-hidden flex items-center justify-center border border-stone-200">
+                        <div class="text-center z-10 p-8">
+                            <i class="fa-solid fa-map-pin text-strawberry-dark text-3xl mb-4"></i>
+                            <h4 class="font-bold text-lg text-charcoal mb-1">慢慢 ManMan Cafe</h4>
+                            <p class="text-xs text-stone-500 font-medium mb-6">台中市北區一中街 99 巷 15 號</p>
+                            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-charcoal text-white font-medium text-xs tracking-widest px-6 py-3 rounded-sm hover:bg-stone-800 transition-all">
+                                <i class="fa-solid fa-location-arrow text-xs"></i>
+                                <span>開啟 GOOGLE MAPS 指引</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 Footer -->
+    <footer class="bg-charcoal text-stone-400 py-16 px-6 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 border-b border-stone-800 pb-12">
+            <div class="flex items-baseline gap-3">
+                <span class="text-2xl font-handwriting font-bold text-white">慢慢</span>
+                <span class="text-[10px] font-semibold tracking-[0.2em] text-stone-400 uppercase">ManMan Cafe</span>
+            </div>
+            
+            <nav class="flex items-center gap-8 tracking-widest text-stone-300">
+                <a href="#about" class="hover:text-white transition-colors">關於品牌</a>
+                <a href="#special" class="hover:text-white transition-colors">草莓與抹茶</a>
+                <a href="#menu" class="hover:text-white transition-colors">菜單</a>
+                <a href="#location" class="hover:text-white transition-colors">門市</a>
+            </nav>
+
+            <div class="flex gap-4 text-base text-stone-300">
+                <a href="#" class="w-8 h-8 rounded-full border border-stone-700 flex items-center justify-center hover:border-white hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-8 h-8 rounded-full border border-stone-700 flex items-center justify-center hover:border-white hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row justify-between items-center text-[10px] tracking-widest text-stone-500 gap-4">
+            <p>&copy; 2026 MANMAN CAFE. ALL RIGHTS RESERVED.</p>
+            <p>台中一中街 草莓與抹茶甜點專賣店</p>
+        </div>
+    </footer>
+
+    <!-- 線上訂位視窗 Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-charcoal/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden transition-opacity">
+        <div class="bg-white max-w-lg w-full p-8 sm:p-10 shadow-2xl border border-stone-200 relative transform scale-95 transition-transform duration-300" id="modal-card">
+            <!-- 關閉按鈕 -->
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-stone-400 hover:text-charcoal text-lg font-light transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-8">
+                <span class="text-[10px] font-semibold tracking-[0.25em] text-strawberry-dark uppercase block mb-1">RESERVATION</span>
+                <h3 class="text-xl font-bold text-charcoal tracking-wide">慢慢 席位預約</h3>
+            </div>
+
+            <form id="booking-form" onsubmit="handleBooking(event)" class="space-y-5 text-xs">
+                <div>
+                    <label class="block font-semibold text-charcoal mb-2">預約姓名</label>
+                    <input type="text" required placeholder="請輸入姓名" class="w-full px-4 py-3 border border-stone-200 rounded-sm focus:border-strawberry-dark focus:outline-none font-serif">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold text-charcoal mb-2">聯絡電話</label>
+                        <input type="tel" required placeholder="0912-345-678" class="w-full px-4 py-3 border border-stone-200 rounded-sm focus:border-strawberry-dark focus:outline-none font-serif">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-charcoal mb-2">預約人數</label>
+                        <select class="w-full px-4 py-3 border border-stone-200 rounded-sm focus:border-strawberry-dark focus:outline-none font-serif bg-white">
+                            <option>1 位</option>
+                            <option selected>2 位</option>
+                            <option>3 位</option>
+                            <option>4 位</option>
+                            <option>5 位以上</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-semibold text-charcoal mb-2">預約日期</label>
+                        <input type="date" required class="w-full px-4 py-3 border border-stone-200 rounded-sm focus:border-strawberry-dark focus:outline-none font-serif">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-charcoal mb-2">預約時段</label>
+                        <select class="w-full px-4 py-3 border border-stone-200 rounded-sm focus:border-strawberry-dark focus:outline-none font-serif bg-white">
+                            <option>12:30</option>
+                            <option>14:00</option>
+                            <option>15:30</option>
+                            <option>17:00</option>
+                            <option>18:30</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-charcoal mb-2">預留甜點或特殊需求（選填）</label>
+                    <textarea id="modal-notes" rows="2" placeholder="例：預留草莓抹茶塔..." class="w-full px-4 py-3 border border-stone-200 rounded-sm focus:border-strawberry-dark focus:outline-none font-serif"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-strawberry-dark hover:bg-strawberry-dark/90 text-white font-medium tracking-[0.2em] text-xs py-4 rounded-sm transition-all mt-4">
+                    確認送出預約
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 成功提示 Notification Toast -->
+    <div id="toast-message" class="fixed bottom-8 right-8 bg-charcoal text-white px-6 py-4 rounded-sm shadow-xl z-50 transform translate-y-32 opacity-0 transition-all duration-300 flex items-center gap-4 text-xs">
+        <i class="fa-solid fa-check text-matcha-accent text-base"></i>
+        <div>
+            <h4 class="font-bold text-white" id="toast-title">預約完成</h4>
+            <p class="text-stone-400 mt-0.5" id="toast-desc">我們將盡快簡訊確認您的席位。</p>
+        </div>
+    </div>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // 行動裝置選單
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // 菜單過濾
+        function filterMenu(category) {
+            const tabs = document.querySelectorAll('.menu-tab');
+            const items = document.querySelectorAll('.menu-item');
+
+            tabs.forEach(tab => {
+                if (tab.dataset.category === category) {
+                    tab.classList.add('border-strawberry-dark', 'text-strawberry-dark', 'font-bold');
+                    tab.classList.remove('border-transparent', 'text-taupe');
+                } else {
+                    tab.classList.remove('border-strawberry-dark', 'text-strawberry-dark', 'font-bold');
+                    tab.classList.add('border-transparent', 'text-taupe');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(`category-${category}`)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal 控制
+        const modal = document.getElementById('booking-modal');
+        const modalCard = document.getElementById('modal-card');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalCard.classList.remove('scale-95');
+                modalCard.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modalCard.classList.remove('scale-100');
+            modalCard.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // 將品項加入預留
+        function addToOrder(itemName) {
+            const notes = document.getElementById('modal-notes');
+            if (notes.value) {
+                notes.value += `, ${itemName}`;
+            } else {
+                notes.value = `預留品項：${itemName}`;
+            }
+            openModal();
+        }
+
+        // 表單提交處理
+        function handleBooking(e) {
+            e.preventDefault();
+            closeModal();
+            showToast('預約已送出', '我們將儘速發送確認簡訊至您的手機。');
+            document.getElementById('booking-form').reset();
+        }
+
+        // Toast 視窗
+        function showToast(title, message) {
+            const toast = document.getElementById('toast-message');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-desc').innerText = message;
+
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+        }
+
+        // 預設訂位日期
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.querySelector('input[type="date"]');
+            if (dateInput) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                dateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+        });
+    </script>
+</body>
+</html>
